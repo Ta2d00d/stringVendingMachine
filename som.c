@@ -271,7 +271,7 @@ void processSelection(char userInput[inputLen], char strs[][numRows][numCols][wo
 		default:
 			if(userInput[0] - 'A' <= numRows && userInput[1] - '0' <= numCols)
 			{
-				//push string to que
+				//push string to queue
 				vend(userInput, strs, *page);
 			}
 			else
@@ -290,7 +290,7 @@ void vend(char userInput[inputLen], char strs[][numRows][numCols][wordLen], int 
 	//change chars to ints for array navigation
 	int letter = userInput[0] - 'A';
 	int num = userInput[1] - '1';
-	//push string to que
+	//push string to queue
 	enqueue(strs[currentPage][letter][num]);
 	return;
 }
@@ -331,18 +331,18 @@ void printSen()
 	if(punc != '.' && punc != '!' && punc !='?')
 		punc = '.';
 
-	//make a copy of first word in que
+	//make a copy of first word in queue
 	for(i = 0; i < wordLen; i++)
 	{
 		first[i] = inLine()[i];
 	}
 	first[0] = first[0] - 32; //capitalize first letter in sentence
 	printf("%s", first); //print first word
-	dequeue(); // remove first word from que
+	dequeue(); // remove first word from queue
 
 	while(inLine() != NULL)
 	{
-		printf(" %s", dequeue()); // print the rest of the words in que
+		printf(" %s", dequeue()); // print the rest of the words in queue
 	}
 	printf("%c\n", punc); // print punctuation
 	return;
@@ -371,7 +371,7 @@ void out()
 
 	outputFile = fopen(outName, "w");
 
-	//make a copy of the first word in que
+	//make a copy of the first word in queue
 	for(i = 0; i < wordLen; i++)
 	{
 		first[i] = inLine()[i];
@@ -379,12 +379,12 @@ void out()
 	first[0] = first[0] - 32; //capitalize first letter in sentence
 	printf("%s", first); //print first word
 	fprintf(outputFile, "%s", first);
-	dequeue(); // remove first word from que
+	dequeue(); // remove first word from queue
 
 	while(inLine() != NULL)
 	{
-		fprintf(outputFile, " %s", inLine()); // output the rest of the words in que
-		printf(" %s", dequeue()); // print the rest of the words in que
+		fprintf(outputFile, " %s", inLine()); // output the rest of the words in queue
+		printf(" %s", dequeue()); // print the rest of the words in queue
 	}
 	fprintf(outputFile, "%c\n", punc); // print punctuation
 	printf("%c\n", punc); // print punctuation
