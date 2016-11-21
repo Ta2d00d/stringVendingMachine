@@ -20,7 +20,7 @@ Sentence will reset each time P or W are entered
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "sQue.h" //header file contains que and related functions
+#include "sQue.h" //header file contains queue and related functions
 
 #define clearLines 99
 #define numRows 6
@@ -70,6 +70,9 @@ int main(int argc, char *argv[])
 	//close file
 	fclose(inputFile);
 
+	//seed random
+	srand(time(NULL));
+	
 	//process input and repeat until user exits
 	while(userInput[0] != 'X')
 	{
@@ -311,7 +314,6 @@ void nextPage(int numPages, int *page)
 void genRandom(char userInput[inputLen], int numPages, int *page)
 {
 	//generates random page and selection
-	srand(time(NULL));
 	*page = rand() % numPages;
 	userInput[0] = (rand() % numRows) + 'A';
 	userInput[1] = (rand() % numCols) + '1';
